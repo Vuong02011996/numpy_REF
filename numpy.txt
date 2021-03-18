@@ -1,0 +1,275 @@
++ Các paper hay code public có giá trị luôn thay đổi một vài điểm để chương trình không chạy được.
++ Khi đọc bảng về sai số đọc kĩ phần đầu để biết sai số và vì thay đổi cái gì.
+
+tan(2*w*tau) = x
+2*w*tau =  arctan(x) 
+
+cur_dir = os.getcwd()
+os.chdir(DATA_PATH)
+...
+os.chdir(cur_dir)
+
+
+# Select Columns by Index from a 2D Numpy Array
+	To select a single column use: 
+	ndArray[ : , column_index]	
+`	To select multiple columns use
+	ndArray[ : , start_index: end_index]
+
+# Select a Sub Matrix or 2d Numpy Array from another 2D Numpy Array	
+	ndArray[start_row_index : end_row_index , start_column_index : end_column_index]
+
+1. np.diag
+    array([[0, 1, 2],
+           [3, 4, 5],
+           [6, 7, 8]])
+
+    >>> np.diag(x)
+    array([0, 4, 8])
+    >>> np.diag(x, k=1)
+    array([1, 5])
+    >>> np.diag(x, k=-1)
+    array([3, 7])
+
+
+2. np.title
+ >>> a = np.array([0, 1, 2])
+    >>> np.tile(a, 2)
+    array([0, 1, 2, 0, 1, 2])
+    >>> np.tile(a, (2, 2))
+    array([[0, 1, 2, 0, 1, 2],
+           [0, 1, 2, 0, 1, 2]])
+    >>> np.tile(a, (2, 1, 2))
+    array([[[0, 1, 2, 0, 1, 2]],
+           [[0, 1, 2, 0, 1, 2]]])
+
+>>>a = np.arange(5,10)
+>>> np.where(a < 8)       # tell me where in a, entries are < 8
+(array([0, 1, 2]),)       # answer: entries indexed by 0, 1, 2
+
+>>> a[np.where(a < 8)] 
+array([5, 6, 7])          # selects from a entries 0, 1, 2
+
+#REPACE SUBARRAY BY ONE NUMBER
+ l_sv_event1[len(l_sv_event1)-int(ann[9])] = int(ann[8])
+ l_sv_event1[len(l_sv_event1)-int(ann[9])+1:-1] = [0]*int(ann[9])
+
+# # COUNT one NUMBER IN NP ARRAY
+ves_summary['total_ves'] = np.sum(dt.beat_status == 60)
+ves.n_single_in_min[minute] = np.count_nonzero(sv_event_minute == 5)
+
+# FIND two element lien tiep trung nhau(chua biet value nao)
+    rr_all_study = np.diff(dt.beat_count)
+    beats_index = np.where(rr_all_study == 0)
+
+# FIND length of subarray:
+len: function nhu the nao cung dk, co the tu dinh nghia rieng.
+list(map(len, group))
+
+#FIND OPPOSITE with np.diff:
+x0 = 1
+np.diff = [0.5, 0.6, 0.4]
+
+x = [1, 1.5, 2.1, 2.5]
+USE:x = np.hstack((x0, np.diff)).cumsum()
+
+Examples
+    --------
+    >>> a = np.array([[1,2,3], [4,5,6]])
+    >>> a
+    array([[1, 2, 3],
+           [4, 5, 6]])
+    >>> np.cumsum(a)
+    array([ 1,  3,  6, 10, 15, 21])
+    >>> np.cumsum(a,axis=0)      # sum over rows for each of the 3 columns
+    array([[1, 2, 3],
+           [5, 7, 9]])
+    >>> np.cumsum(a,axis=1)      # sum over columns for each of the 2 rows
+    array([[ 1,  3,  6],
+           [ 4,  9, 15]])
+
+# SPLIT NUMPY
+>>> x = np.arange(8.0)
+>>> np.split(x, [3, 5, 6, 10])
+[array([0.,  1.,  2.]),
+ array([3.,  4.]),
+ array([5.]),
+ array([6.,  7.]),
+ array([], dtype=float64)]
+
+# LOAI BO NHUNG PHAN TU GIONG NHAU
+>>> a = np.array([1, 2, 6, 4, 2, 3, 2])
+>>> u, indices = np.unique(a, return_inverse=True)
+>>> u
+array([1, 2, 3, 4, 6])
+# CONVERT ARRAY 1D TO 2D USING NP.RESHAPE
+>>> a = np.arange(6).reshape((3, 2))
+>>> a
+array([[0, 1],
+       [2, 3],
+       [4, 5]])
+# CONVERT to H P S: str(timedelta(seconds=))
+
+# FIND MOST FREQUENT NUMBER in NUMPY ARRAY:
+	hr_all_study = np.asarray(hr_all_study, dtype=int)
+        frequent_hr = np.argmax(np.bincount(hr_all_study))
+ 
+	np.argmin(hr_all_study)
+	study_data[:, 0][np.argmin(hr_all_study)]
+	index_min = np.where(hr_all_study == (np.min(hr_all_study)))[0][0]
+	position_min_hr = datetime.fromtimestamp(study_data[:, 0][index_min])
+
+# FIND ELEMENT THE SAME IN TWO NUMPY ARRAY:
+	 a = [1,2,3,4,5]
+	b = [1,2,4,3,6,7]
+	np.intersect1d(a, b) = [1,2,3,4]
+# FIND ELEMENT DIFFERENCE IN TWO NUMPY ARRAY:
+	 a = [1,2,3,4,5]
+	b = [1,2,4,3,6,7]
+	np.setdiff1d(a, b) = [5]
+	np.setdiff1d(b, a) = [6 7]
+
+# INSERT ELEMENT TO ALL COLUNM IN ARRAY NHIEU CHIEU
+INSERT COLUMN
+>>> a
+array([[1, 1],
+       [2, 2],
+       [3, 3]])
+>>> np.insert(a, [1], [[1],[2],[3]], axis=1)
+array([[1, 1, 1],
+       [2, 2, 2],
+       [3, 3, 3]])
+INSERT ROW
+>>> np.insert(a, 1, [1,2], axis=0)
+MANY ROW:
+np.insert(a, 1, [[1, 2], [1, 2]], axis=0)
+
+# no index, insert index -1
+input_array=np.array([1,2,3])
+new_row= np.array([4,5,6])
+
+new_array=np.vstack([input_array, new_row])
+
+array_ = np.array([[1,2,3]])
+add_row = np.array([[4,5,6]])
+
+array_ = np.concatenate((array_, add_row), axis=0)
+
+	
+	USEFULL
+    ma.concatenate : Concatenate function that preserves input masks.
+    array_split : Split an array into multiple sub-arrays of equal or
+                  near-equal size.
+    split : Split array into a list of multiple sub-arrays of equal size.
+    hsplit : Split array into multiple sub-arrays horizontally (column wise)
+    vsplit : Split array into multiple sub-arrays vertically (row wise)
+    dsplit : Split array into multiple sub-arrays along the 3rd axis (depth).
+    stack : Stack a sequence of arrays along a new axis.
+    hstack : Stack arrays in sequence horizontally (column wise)
+    vstack : Stack arrays in sequence vertically (row wise)
+    dstack : Stack arrays in sequence depth wise (along third dimension)
+    block : Assemble arrays from blocks.
+
+#FOR CHAY NGUOC LAI(index tu len-1 -> 0)
+    hr_sorted = [1, 2, 3, 4]
+    for inx in reversed(range(0, len(hr_sorted))):
+        print(inx)
+    '''3 2 1 0'''
+    for inx in reversed(range(0, len(hr_sorted) - 1)): False
+    for inx in reversed(range(0, len(hr_sorted))): True
+
+# KIEM TRA ALL ELEMENT IN ARRAY THE SAME:
+	C1:USE: set
+	listChar = ['z','z','z','z']
+	 
+	if(len(set(listChar))==1):
+	  print "All elements in list are same"
+	else:
+	  print "All elements in list are not same"
+
+	C2: USE: count
+	listChar = ['z','z','z','z']
+	 
+	if listChar.count(listChar[0]) == len(listChar):
+	  print "All elements in list are same."
+	else:
+	  print "Elements in list are different.
+
+# TAO ARRAY WITH STEP
+	>>> np.arange(3,7)
+	array([3, 4, 5, 6])
+	>>> np.arange(3,7,2)
+	array([3, 5])
+
+#  REPLACE array INDEX BY ONE NUMBER
+	>>> a = np.arange(5)
+	>>> np.put(a, [0, 2], [-44, -55])
+	>>> a
+	array([-44,   1, -55,   3,   4])
+	Cach2:
+	ann[index_event_noise] = 60
+	# chu y la ham put khong return ma thay doi truc tiep a
+#  CREATE INDEX
+# Overlapping Subsets of Array (NumPy, Python)
+	https://stackoverflow.com/questions/2485669/consecutive-overlapping-subsets-of-array-numpy-python
+	[0 1][1 2][2 3], [0 1 2][ 1 2 3], ....to group index
+	>>> a = numpy.arange(1, 15)
+	>>> n=5
+	>>> np.array(zip(*(A[i:] for i in range(n))))
+	array([[ 1,  2,  3,  4,  5],
+	       [ 2,  3,  4,  5,  6],
+	       [ 3,  4,  5,  6,  7],
+	       [ 4,  5,  6,  7,  8],
+	       [ 5,  6,  7,  8,  9],
+	       [ 6,  7,  8,  9, 10],
+	       [ 7,  8,  9, 10, 11],
+	       [ 8,  9, 10, 11, 12],
+	       [ 9, 10, 11, 12, 13],
+	       [10, 11, 12, 13, 14]])
+
+## Calculate the Euclidean distance using NumPy
+https://www.geeksforgeeks.org/calculate-the-euclidean-distance-using-numpy/
+	import numpy as np 
+	  
+	# intializing points in 
+	# numpy arrays 
+	point1 = np.array((1, 2, 3)) 
+	point2 = np.array((1, 1, 1)) 
+	  
+	# calculating Euclidean distance 
+	# using linalg.norm() 
+	dist = np.linalg.norm(point1 - point2) 
+	  
+	# printing Euclidean distance 
+	print(dist) 
+
+# Check each element in array is also present in a second array. 
+
+>>> test = np.array([0, 1, 2, 5, 0])
+    >>> states = [0, 2]
+    >>> mask = np.in1d(test, states)
+    >>> mask
+    array([ True, False,  True, False,  True])
+    >>> test[mask]
+    array([0, 2, 0])
+    >>> mask = np.in1d(test, states, invert=True)
+    >>> mask
+    array([False,  True, False,  True, False])
+    >>> test[mask]
+    array([1, 5])
+
+# Get all value in dict with input sub list keys:
+list_search_distance = reduce(lambda x,y: mydict.get(y) and x.append(mydict[y]) or x, mykeys,[]): incase there are keys not in dict.
+from operator import itemgetter
+list_search_distance = itemgetter(*mykeys)(mydict)
+
+
+
+
+
+
+
+
+
+
+
